@@ -5,12 +5,17 @@ class Employee extends React.Component{
 
         this.state ={
             txtFirstName : "",
-            txtLastName: "",
-            txtSalary: "",
             txtEmail:"",
             txtAddress:"",
+            txtAddress2:"",
+            txtCity:"",
+            txtProv:"",
+            txtPostalCode:""
         }
     }
+
+    options = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Ontario", 
+    "Prince Edward Island", "Quebec", "Saskatchewan"]
 
     onSubmitData = (event) => {
         event.preventDefault()
@@ -27,17 +32,36 @@ class Employee extends React.Component{
     render(){
         return(
         <div>
-            <h1>Employee Data Entry From Class Component</h1>
             <form onSubmit={e => this.onSubmitData(e)}>
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtFirstName" placeholder="Full Name" />
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtEmail" placeholder="Enter email" />
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtAddress" placeholder="1234 Main St" />
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtAddress 2" placeholder="Apartment , studio or floor" />
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtCity" placeholder="" />
-                {/* <input onChange={e => this.onValueChange(e)} type="text" name="Province Code" placeholder="Apartment , studio or floor" /> */}
-                <input onChange={e => this.onValueChange(e)} type="text" name="Postal Code" placeholder="Postal Code" />
-                <input type="submit" value="Submit"/>
+                <input onChange={e => this.onValueChange(e)} type="text" name="txtPostalCode" placeholder="Postal Code" />
+                <div style={{float:'left', marginLeft:'10px'}}>
+                            <label style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Province</label>
+                            <select style={{width:'490px', marginTop:'10px'}} name="selectedOption" onChange={e => this.onValueChange(e)}>
+                                <option name="selectedOption" key="">Choose...</option>{
+                                    this.options.map(selectedOption => {
+                                    return (<option key={selectedOption}>{selectedOption}</option>)
+                                    })
+                                }
+                            </select>
+                        </div>
+                <br/>
+                <br/>
+                <input onChange={e => this.onValueChange(e)} type="checkbox" name="terms" placeholder="Province" />
+                <input onChange={e => this.onValueChange(e)} type="submit" name="submit " placeholder="Submt" />
             </form>
+
+            <h2>Data Output</h2>
+                <h5>FullName:{this.state.txtFirstName}</h5>
+                <h5>Email:{this.state.txtEmail}</h5>
+                <h5>Address: {this.state.txtAddress}</h5>
+                <h5>City: {this.state.txtCity}</h5>
+                <h5>Province: {this.state.selectedOption}</h5>
+                <h5>Postal Code: {this.state.txtPostalCode}</h5>
         </div>
         )
     }
