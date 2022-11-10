@@ -1,5 +1,5 @@
 import React from "react";
-class Employee extends React.Component{
+export default class Employee extends React.Component{
     constructor(props){
         super(props)
 
@@ -14,8 +14,7 @@ class Employee extends React.Component{
         }
     }
 
-    options = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Ontario", 
-    "Prince Edward Island", "Quebec", "Saskatchewan"]
+    options = ["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland and Labrador", "Nova Scotia", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan"]
 
     onSubmitData = (event) => {
         event.preventDefault()
@@ -35,10 +34,12 @@ class Employee extends React.Component{
             <form onSubmit={e => this.onSubmitData(e)}>
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtFirstName" placeholder="Full Name" />
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtEmail" placeholder="Enter email" />
+                <br></br>
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtAddress" placeholder="1234 Main St" />
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtAddress 2" placeholder="Apartment , studio or floor" />
-                <input onChange={e => this.onValueChange(e)} type="text" name="txtCity" placeholder="" />
+                <input onChange={e => this.onValueChange(e)} type="text" name="txtCity" placeholder="City" />
                 <input onChange={e => this.onValueChange(e)} type="text" name="txtPostalCode" placeholder="Postal Code" />
+                <br></br>
                 <div style={{float:'left', marginLeft:'10px'}}>
                             <label style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>Province</label>
                             <select style={{width:'490px', marginTop:'10px'}} name="selectedOption" onChange={e => this.onValueChange(e)}>
@@ -51,20 +52,20 @@ class Employee extends React.Component{
                         </div>
                 <br/>
                 <br/>
-                <input onChange={e => this.onValueChange(e)} type="checkbox" name="terms" placeholder="Province" />
+                <input type="checkbox" name="checkbox" value="check" id="agree" /> Agree Terms & Conditions
                 <input onChange={e => this.onValueChange(e)} type="submit" name="submit " placeholder="Submt" />
             </form>
-
+        <br></br>
+        <hr></hr>
             <h2>Data Output</h2>
                 <h5>FullName:{this.state.txtFirstName}</h5>
                 <h5>Email:{this.state.txtEmail}</h5>
-                <h5>Address: {this.state.txtAddress}</h5>
+                <h5>Address: {this.state.txtAddress + this.state.txtAddress2}</h5>
                 <h5>City: {this.state.txtCity}</h5>
                 <h5>Province: {this.state.selectedOption}</h5>
                 <h5>Postal Code: {this.state.txtPostalCode}</h5>
+                <hr></hr>
         </div>
         )
     }
 }
-
-export default Employee
